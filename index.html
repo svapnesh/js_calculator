@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Simple Calculator
+        </title>
+        <style>
+            div{
+                background-color: gray;
+                width: 18%;
+                margin: auto;
+                border: 2px solid black;
+            }
+            input{
+                height: 45px;
+                font-size: large;
+                text-align: right;
+                margin: auto;
+                border: 1px solid black;
+            }
+            button{
+                width: 50px;
+                height: 50px;
+                background-color: gray;
+                border: none;
+                color: white;
+                font-weight: bolder;
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <input type="text" id="display"/>
+            <br>
+            <table >
+                <tr>
+                    <td>            
+                        <button onclick="buttonClick(7)">7</button>
+                    </td>
+                    <td>
+                        <button onclick="buttonClick(8)">8</button> 
+                    </td>
+                    <td>            
+                        <button onclick="buttonClick(9)">9</button>
+                    </td>
+                    <td>            
+                        <button onclick="buttonClick('+')">+</button>  
+                    </td>
+                </tr>
+                <tr>
+                    <td>            
+                        <button onclick="buttonClick(4)">4</button> 
+                    </td>
+                    <td>
+                        <button onclick="buttonClick(5)">5</button> 
+                    </td>
+                    <td>            
+                        <button onclick="buttonClick(6)">6</button>
+                    </td>
+                    <td>            
+                        <button onclick="buttonClick('-')">-</button>  
+                    </td>
+                </tr>
+                <tr>
+                    <td>            
+                        <button onclick="buttonClick(1)">1</button> 
+                    </td>
+                    <td>            
+                        <button onclick="buttonClick(2)">2</button> 
+                    </td>
+                    <td>            
+                        <button onclick="buttonClick(3)">3</button>
+                    </td>
+                    <td>            
+                        <button onclick="buttonClick('*')">*</button>  
+                    </td>
+                </tr>
+                <tr>
+                    <td>            
+                        <button onclick="buttonClick('c')" style="background-color:lightcoral;">C</button> 
+                    </td>
+                    <td>            
+                        <button onclick="buttonClick(0)">0</button> 
+                    </td>
+                    <td>            
+                        <button onclick="buttonClick('=')">=</button> 
+                    </td>
+                    <td>            
+                        <button onclick="buttonClick('/')">/</button> 
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <script>
+            document.onkeydown = function (e) 
+            {
+                return false;
+            }
+            function buttonClick(value){
+                var displayValue = document.getElementById("display").value;
+                var lastValue = displayValue[displayValue.length - 1]; 
+                if((lastValue == '+' || lastValue == '-' || lastValue == '/' || lastValue == '*') && (value == '+' || value == '-' || value == '/' || value == '*'))
+                {
+                    displayValue = displayValue.replace(/.$/,value);
+                    document.getElementById("display").value = displayValue;
+                }
+                else if(value === '='){
+                    document.getElementById("display").value = eval(document.getElementById("display").value);
+                }
+                else if(value === 'c'){
+                    document.getElementById("display").value = '';
+                }
+                else{
+                    document.getElementById("display").value = document.getElementById("display").value + value;
+                }
+            }
+        </script>
+    </body>
+</html>
